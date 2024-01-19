@@ -1,0 +1,7 @@
+npm
+  npm i axios             for api / fetch
+  npm i bcryptjs          to encrypt data & to create tokkens
+  npm i jsonwebtoken      for token & cookies
+  npm i nodemailer        for sending emails
+  npm i react-hot-toast   for pop up messages
+  npm i mongoose          to talk to mongodb
