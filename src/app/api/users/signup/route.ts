@@ -12,27 +12,27 @@ export async function POST(request: NextRequest) {
     const { username, email, password } = reqBody;
 
     // check validity of details
-    if(!username || !email || !password){
-      return NextResponse.json({
-        error: "invalid details",
-        status: "400"
-      })
+    if (!username || !email || !password) {
+      return NextResponse.json(
+        { error: "invalid details" },
+        { status: 400 }
+      )
     }
-    
+
     // check if user already exists
-    const user = await User.findOne({email});
-    if(user){
-      return NextResponse.json({
-        error: "user already exists",
-        status: "400"
-      })
+    const user = await User.findOne({ email });
+    if (user) {
+      return NextResponse.json(
+        { error: "user already exists" },
+        { status: 400 }
+      )
     }
 
     // hash password
     const salt = await bcryptjs.genSalt(10);
-    const hashedPassword = await bcryptjs.hash(password,salt);
+    const hashedPassword = await bcryptjs.hash(password, salt);
 
-    // create new user & save it to db
+    // create new user & save it in db
     const newUser = new User({
       username,
       email,
@@ -47,10 +47,10 @@ export async function POST(request: NextRequest) {
     })
   }
   catch (error: any) {
-    return NextResponse.json({
-      error: error.message,
-      status: 500
-    })
+    return NextResponse.json(
+      { error: error.message },
+      { status: 500 }
+    )
   }
 
 }

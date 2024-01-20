@@ -23,48 +23,48 @@ export default function LoginPage() {
       setButtonDisabled(true);
   }, [user]);
 
-  const onLogin = async ()=>{
+  const onLogin = async () => {
 
-    try{
+    try {
       setLoading(true);
       const response = await axios.post('/api/users/login', user);
-      console.log(response);
+      console.log('login success', response.data);
       toast.success('Login success');
       router.push(`/profile/${user.email}`);
     }
-    catch(error:any){
+    catch (error: any) {
       console.log('login failed', error.message);
-      toast.error(error.message);
+      toast.error("login failed");
     }
-    finally{
+    finally {
       setLoading(false);
     }
 
   }
 
   return (
-    
+
     // this is best
     <div className='flex flex-col items-center justify-center min-h-screen py-2'>
       <h1>Login</h1>
-      <hr />      
+      <hr />
       <label htmlFor="email">email</label>
-      <input 
+      <input
         className='p-2 border border-gray-300 rounded-lg mb-4 bg-black text-white'
         type="email"
         id='email'
         value={user.email}
-        onChange={(e)=>setUser({...user, email:e.target.value})}
+        onChange={(e) => setUser({ ...user, email: e.target.value })}
         placeholder='email'
       />
-      
+
       <label htmlFor="password">password</label>
-      <input 
+      <input
         className='p-2 border border-gray-300 rounded-lg mb-4 bg-black text-white'
         type="password"
         id='password'
         value={user.password}
-        onChange={(e)=>setUser({...user, password:e.target.value})}
+        onChange={(e) => setUser({ ...user, password: e.target.value })}
         placeholder='password'
       />
 
@@ -79,6 +79,6 @@ export default function LoginPage() {
 
     </div>
 
-)
+  )
 
 }

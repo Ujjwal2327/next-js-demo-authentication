@@ -14,28 +14,28 @@ export async function POST(request: NextRequest) {
 
     // check validity of details
     if (!email || !password) {
-      return NextResponse.json({
-        error: "invalid details",
-        status: "400"
-      })
+      return NextResponse.json(
+        { error: "invalid details" },
+        { status: 400 }
+      )
     }
 
     // check if user does not exists
     const user = await User.findOne({ email });
     if (!user) {
-      return NextResponse.json({
-        error: "user does not exists",
-        status: "400"
-      })
+      return NextResponse.json(
+        { error: "user does not exists" },
+        { status: 400 }
+      )
     }
 
-    // check if password is correct
+    // check if password is incorrect
     const validPassword = await bcryptjs.compare(password, user.password);
     if (!validPassword) {
-      return NextResponse.json({
-        error: "invalid password",
-        status: 400
-      })
+      return NextResponse.json(
+        { error: "invalid password" },
+        { status: 400 }
+      )
     }
 
     // create token
@@ -49,7 +49,6 @@ export async function POST(request: NextRequest) {
       process.env.TOKEN_SECRET!,
       { expiresIn: '1h' }
     )
-    console.log(token);
 
     // create cookie with name token
     const response = NextResponse.json({
@@ -65,10 +64,10 @@ export async function POST(request: NextRequest) {
     return response;
   }
   catch (error: any) {
-    return NextResponse.json({
-      error: error.message,
-      status: 500
-    })
+    return NextResponse.json(
+      { error: error.message },
+      { status: 500 }
+    )
   }
 
 }

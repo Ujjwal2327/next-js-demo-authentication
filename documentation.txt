@@ -5,3 +5,13 @@ npm
   npm i nodemailer        for sending emails
   npm i react-hot-toast   for pop up messages
   npm i mongoose          to talk to mongodb
+
+2 methods of deleting cookie
+  response.cookies.set(
+    "token",
+    "",
+    { httpOnly: true, expires: new Date(0) }
+  );
+
+  response.cookies.delete("token");
+
