@@ -18,7 +18,7 @@ export default function ProfilePage() {
     }
     catch(error:any){
       toast.error("logout failed");
-      console.log(error.message);
+      // console.log(error.message);
     }
   }
 
@@ -26,10 +26,10 @@ export default function ProfilePage() {
     try{
       const response = await axios.get('/api/users/me');
       setUserId(response.data.user._id);
-      console.log(response.data.user._id);
+      // console.log(response.data.user._id);
     }
     catch(error:any){
-      console.log(error.message);
+      // console.log(error.message);
     }
   }
 

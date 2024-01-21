@@ -15,3 +15,8 @@ npm
 
   response.cookies.delete("token");
 
+window.location.search
+
+email verification
+  domain.com/verifytoken/devkbescbbf          better if i do everything from server component
+  domain.com/verifytoken?token=devkbescbbf    client component
